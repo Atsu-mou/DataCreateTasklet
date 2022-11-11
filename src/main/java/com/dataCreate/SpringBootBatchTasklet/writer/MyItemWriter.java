@@ -9,6 +9,7 @@ import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,9 @@ import org.springframework.web.client.RestTemplate;
 public class MyItemWriter implements ItemWriter<Pet>, StepExecutionListener {
 
     final private RestTemplate restTemplate;
+
+    @Value("${api.request.url}")
+    String apiRequestUrl;
 
     @Autowired
     public MyItemWriter(RestTemplate restTemplate) {
@@ -35,7 +39,7 @@ public class MyItemWriter implements ItemWriter<Pet>, StepExecutionListener {
             headers.setContentType(MediaType.APPLICATION_JSON);
 
             HttpEntity<Pet> request = new HttpEntity<>(filePath, headers);
-            restTemplate.exchange("http://localhost:8080/send/foo", HttpMethod.POST,request,Void.class);
+            restTemplate.exchange(apiRequestUrl, HttpMethod.POST,request,Void.class);
             log.info(filePath.toString());
         }
 

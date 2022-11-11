@@ -2,3 +2,7 @@ server:
   port: 8082
 
 cron: "0 * * * * *"
+
+api:
+  request:
+    url: "http://localhost:1080/send/foo"
