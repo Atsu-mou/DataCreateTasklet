@@ -8,7 +8,7 @@
 		<version>1.5.18.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.izdebski</groupId>
+	<groupId>com.batch</groupId>
 	<artifactId>SpringBootBatchTasklet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringBootBatchTasklet</name>
